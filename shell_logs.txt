@@ -1,0 +1,500 @@
+    3  make clean
+    4  make
+    5  make clean
+    6  make
+    7  ./run_tests.sh 4
+    8  make clean
+    9  make
+   10  ./run_tests.sh 4
+   11  make clean
+   12  make
+   13  make clean
+   14  make
+   15  make clean
+   16  make
+   17  ./run_tests.sh 4
+   18  make clean
+   19  make
+   20  ./run_tests.sh 4
+   21  ./run_tests.sh 4
+   22  make clean
+   23  make
+   24  make clean
+   25  make
+   26  ./run_tests.sh 4
+   27  git add .
+   28  git commit -m "2%"
+   29  git push
+   30  make clean
+   31  make
+   32  make clean
+   33  make
+   34  make clean
+   35  make
+   36  ./run_tests.sh 4
+   37  make clean
+   38  make
+   39  ./run_tests.sh 4
+   40  make clean
+   41  make
+   42  make clean
+   43  make
+   44  make clean
+   45  make
+   46  make clean
+   47  make
+   48  make clean
+   49  make
+   50  make clean
+   51  make
+   52  make clean
+   53  make
+   54  make clena
+   55  make clean
+   56  make
+   57  ./run_tests.sh 4
+   58  git add .
+   59  git commit m- "48%"
+   60  git push
+   61  git add .
+   62  git commit -m 
+   63  git commit -m "48%"
+   64  git push
+   65  ./bin/ci -i testcases/week4/b.cond.s
+   66  ./bin/ci -i testcases/week4/b.cond.s
+   67  make 
+   68  ./bin/ci -i testcases/week4/b.cond.s
+   69  make clean
+   70  make
+   71  ./bin/ci -i testcases/week4/b.cond.s
+   72  grep -B5 -A10 "ht_put" src/ci/parser.c
+   73  make clean
+   74  make
+   75  ./bin/ci -i testcases/week4/b.cond.s
+   76  make clean
+   77  make
+   78  ./bin/ci -i testcases/week4/b.cond.s
+   79  make clean
+   80  make
+   81  ./bin/ci -i testcases/week4/b.cond.s
+   82  make clean
+   83  make
+   84  ./bin/ci -i testcases/week4/b.cond.s
+   85  grep -A 30 "case CMD_BRANCH" src/ci/interpreter.c
+   86  grep -A 10 "BranchCondition" include/ci/command_type.h
+   87  make clean
+   88  make
+   89  make clean
+   90  make
+   91  ./bin/ci -i testcases/week4/b.cond.s
+   92  make clean
+   93  make
+   94  ./bin/ci -i testcases/week4
+   95  ./run_tests.sh 4
+   96  grep -A 15 "case CMD_RET" src/ci/interpreter.c
+   97  nancyrmz@trix:~/ci-lab-nancyrmz-1$ grep -A 15 "case CMD_RET" src/ci/interpreter.c
+   98        case CMD_RET: {
+   99          if (intr->stack == NULL) {
+  100              return;
+  101          }
+  102          StackRecord *record = intr->stack;
+  103          intr->stack = record->next;
+  104          for (size_t i = 1; i < NUM_VARIABLES; i++) {
+  105              intr->variables[i] = record->variables[i];
+  106          }
+  107          Command *return_addr = record->return_address;
+  108          free(record);
+  109          if (return_addr == NULL) {
+  110              return;
+  111          }
+  112          commands = return_addr;
+  113          continue;  // Skip normal progression
+  114  nancyrmz@trix:~/ci-lab-nancyrmz-1$ 
+  115  tail -20 src/ci/interpreter.c
+  116  grep -B 30 "void print_interpreter_state" src/ci/interpreter.c | tail -35
+  117  nancyrmz@trix:~/ci-lab-nancyrmz-1$ grep -B 30 "void print_interpreter_state" src/ci/interpreter.c | tail -35
+  118              intr->had_error = true;
+  119              return;
+  120          }
+  121          break;
+  122      }
+  123        case CMD_SUB: {
+  124          int64_t val_a = (commands->val_a.type == OP_VAR)
+  125                          ? intr->variables[commands->val_a.as.var]
+  126                          : commands->val_a.as.imm;
+  127          
+  128          int64_t val_b = (commands->val_b.type == OP_VAR)
+  129                          ? intr->variables[commands->val_b.as.var]
+  130                          : commands->val_b.as.imm;
+  131          
+  132          intr->variables[commands->destination.as.var] = val_a - val_b;
+  133          break;
+  134        }
+  135        case CMD_NOP:         // Do nothing
+  136          break;
+  137        defauclen
+  138  clean
+  139  reset
+  140  ./bin/ci -i testcases/week4/b.cond.s
+  141  ./bin/ci_reference -i testcases/week4/b.cond.s 
+  142  make clean
+  143  make
+  144  ./run_tests.sh 4
+  145  make clean
+  146  make
+  147  make clean
+  148  make
+  149  ./run_tests.sh 4
+  150  git add .
+  151  git commit -m "54%"
+  152  git push
+  153  make clean
+  154  make
+  155  ./run_tests.sh 4
+  156  grep -A 3 "BRANCH_EQUAL" src/ci/interpreter.c
+  157  cat testcases/week4/b.eq.s
+  158  ./bin/ci -i testcases/week4/b.eq.s
+  159  make test_week4
+  160  ./bin/ci -i testcases/week4/b.cond.s -o ci.out
+  161  ./bin/ci -i testcases/week4/b.cond.s 
+  162  ./bin/ci_reference -i testcases/week4/b.cond.s 
+  163  git checkout bin/ci_reference
+  164  git restore bin/ci_reference
+  165  cat .gitignore | grep ci_reference
+  166  cat testcases/week4/b.s
+  167  echo mov x1, 42
+  168  b helper
+  169  mov x1, 0xdeadbeef
+  170  helper:
+  171      // Correct: 42
+  172  ./bin/ci -i testcases/week4/b.s
+  173  grep -A 15 "TOK_IDENT && parser->next.type == TOK_COLON" src/ci/parser.c
+  174  make clean
+  175  make
+  176  makc lean
+  177  make clean
+  178  make
+  179  ./run_tests.sh 4
+  180  make clean
+  181  make
+  182  ./run_tests.sh 4
+  183  ./bin/ci -i testcases/week4/b.s
+  184  grep -A 40 "TOK_IDENT && parser->next.type == TOK_COLON" src/ci/parser.c
+  185  make clean
+  186  make
+  187  ./bin/ci -i testcases/week4/b.s
+  188  cat -A testcases/week4/b.s
+  189  grep -A 50 "TOK_IDENT && parser->next.type == TOK_COLON" src/ci/parser.c | head -55
+  190  grep -A 50 "TOK_IDENT && parser->next.type == TOK_COLON" src/ci/parser.c | head -55
+  191  make clean
+  192  make
+  193  make clean
+  194  make
+  195  make clean
+  196  make
+  197  cat -A testcases/week4/b.s
+  198  ./bin/ci -i testcases/week4/b.s 2>&1 | grep -E "DEBUG|x1:"
+  199  grep "= 27" include/ci/token_type.h
+  200  cat include/ci/token_type.h | grep -A 30 "typedef enum"
+  201  ./bin/ci -l -i testcases/week4/b.s 2>&1 | grep -A 5 -B 5 "helper"
+  202  sed -n '1,10p' testcases/week4/b.s | cat -n
+  203  make clean
+  204  make
+  205  grep -n "TOK_PRINT" include/ci/token_type.h
+  206  grep -B 40 "TOK_PRINT" include/ci/token_type.h | grep -E "TOK_" | cat -n
+  207  cat testcases/week4/branch_taken.s
+  208  ./bin/ci -i testcases/week4/branch_taken.s
+  209  echo "print 65535, D" | ./bin/ci
+  210  ./bin/ci -l -i testcases/week4/branch_taken.s 2>&1 | grep -A 10 "goback"
+  211  sed -n '7,11p' testcases/week4/branch_taken.s | cat -An
+  212  git checkout bin/ci_reference
+  213  git status
+  214  ls -la bin/
+  215  cat > /tmp/simple_branch.s << 'EOF'
+  216  mov x1, 42
+  217  b skip
+  218  mov x1, 99
+  219  skip:
+  220  print x1, D
+  221  EOF
+  222  ./bin/ci -i /tmp/simple_branch.s
+  223  make clean
+  224  make
+  225  ./bin/ci -i /tmp/simple_branch.s
+  226  make clean
+  227  make 
+  228  ./bin/ci -i /tmp/simple_branch.s
+  229  make clean
+  230  make
+  231  ./bin/ci -i /tmp/simple_branch.s
+  232  grep -n "Hit CMD_BRANCH, condition" src/ci/interpreter.c
+  233  make clean
+  234  make
+  235  ./run_tests.sh 4
+  236  make clean
+  237  make
+  238  ./run_tests.sh 4
+  239  make clean
+  240  make
+  241  ./run_tests.sh 4
+  242  git add .
+  243  git commit -m "82%"
+  244  git push
+  245  ./bin/ci -i testcases/week4/b.eq_err.s
+  246  .bin/ci_reference -i testcases/week4/b.eq_err.s
+  247  ./bin/ci -i testcases/week4/b.eq_err.s > my_err.txt 2>&1
+  248  cat my_err.txt
+  249  cd ~/ci-lab-nancyrmz-1
+  250  git fetch origin
+  251  git checkout origin/main -- bin/ci_reference
+  252  cd /tmp
+  253  git clone https://github.com/cs429-sp2026/ci-lab-nancyrmz.git temp-repo
+  254  reset
+  255  exit
+  256  cd ~ci-lab-nancyrmz-1
+  257  cd ~/ci-lab-nancyrmz-1
+  258  chmod +x bin/ci_reference
+  259  ./bin/ci_reference -i /tmp/simple_branch.s
+  260  ./bin/ci -i /tmp/simple_branch.s
+  261  ./run_tests.sh 4
+  262  ./bin/ci_reference -i testcases/week4/b.eq_err.s
+  263  ./bin/ci -i /tmp/simple_branch.s
+  264  make clean
+  265  make
+  266  ./bin/ci -i /tmp/simple_branch.s
+  267  ./bin/ci -i testcases/week4/b.eq_err.s
+  268  ./run_tests.sh 4
+  269  ./bin/ci_reference -i testcases/week4/b_err.s
+  270  ./bin/ci -i testcases/week4/b_err.s
+  271  ./bin/ci_reference -i testcases/week4/b_err.s
+  272  ls -la bin/
+  273  ./run_tests.sh 4
+  274  make clean
+  275  make
+  276  grep -A 25 "case TOK_CALL:" src/ci/parser.c
+  277  git status
+  278  make clean
+  279  make
+  280  make clean
+  281  make
+  282  git fetch originmake clean
+  283  make clean
+  284  make
+  285  make clean
+  286  make
+  287  ./run_tests.sh 4
+  288  make clean
+  289  make
+  290  ./run_tests.sh 4
+  291  git add .
+  292  git commit -m "100%"
+  293  git push
+  294  grep -A 5 "ht_free" src/ci/init.c
+  295  cat src/ci/command.c
+  296  valgrind --leak-check=full --show-leak-kinds=all ./bin/ci -i /tmp/simple_branch.s 2>&1 | head -80
+  297  valgrind --leak-check=full --error-exitcode=42 ./bin/ci -i testcases/week4/b.s
+  298  echo "Exit code: $?"
+  299  make clean
+  300  make
+  301  valgrind --leak-check=full --error-exitcode=42 ./bin/ci -i testcases/week4/b.s
+  302  echo "Exit code: $?"
+  303  ./run_tests.sh 4
+  304  git add .
+  305  git commit -m "done"
+  306  git push
+  307  time ./bin/ci -i testcases/week4/fib_recursive.s
+  308  time ./bin/ci_reference -i testcases/week4/fib_recursive.s
+  309  ls -la bin/ci_reference
+  310  ./run_tests.sh 4 | grep -E "(week4:|Overall:|FAILED|PASSED)"
+  311  ./bin/ci -i testcases/week4/rib_recursive.s
+  312  ./bin/ci -i testcases/week4/fib_recursive.s
+  313  ./bin/ci -i testcases/week4/fib_iterative.s
+  314  git add .
+  315  git commit -m "done"
+  316  git push
+  317  make clean
+  318  make
+  319  ./runner -h
+  320  -r
+  321  ./runner -f traces/short1.rep
+  322  h
+  323  make clean
+  324  make
+  325  git add .
+  326  git commit -m "update"
+  327  git push
+  328  ./runner
+  329  ./heap_runner
+  330  python3 driver.py -w1
+  331  ./bump_test
+  332  make
+  333  debug
+  334  make debug
+  335  ./runner -h
+  336  make clean
+  337  make
+  338  make clean
+  339  make
+  340  ./runner -h
+  341  python3 driver.py -w1
+  342  ./heap_runner
+  343  make clean
+  344  make
+  345  git add .
+  346  git commit -m "umalloc done"
+  347  git push
+  348  make clean
+  349  make
+  350  python3 driver.py -w1
+  351  git add .
+  352  git commit -m "bugs fixed"
+  353  git push
+  354  make clean
+  355  make
+  356  make clean
+  357  make
+  358  make clean
+  359  make
+  360  python3 driver.py -w1
+  361  ./heap_runner
+  362  ./runner -h
+  363  -d
+  364  ./runner -d
+  365  ./runner -u
+  366  python3 driver.py 
+  367  make clean
+  368  make
+  369  make clean
+  370  make
+  371  python3 driver.py 
+  372  python3 driver.py 
+  373  make clean
+  374  make
+  375  python3 driver.py 
+  376  make clean
+  377  make
+  378  python3 driver.py 
+  379  ./bump_test
+  380  gdb ./bump_test
+  381  make clean
+  382  make
+  383  python3 driver.py 
+  384  git add .
+  385  git commit -m 
+  386  git commit -m "7.5/15"
+  387  git push
+  388  python3 driver.py 
+  389  python3 driver.py 
+  390  ./runner -f traces/week2/basic/amptjp.rep -c
+  391  e
+  392  make clean
+  393  make
+  394  make clean
+  395  make
+  396  make clean
+  397  make
+  398  make clean
+  399  make
+  400  make clean
+  401  make
+  402  make clean
+  403  make
+  404  make clean
+  405  make
+  406  python3 driver.py 
+  407  make clean
+  408  make
+  409  python3 driver.py 
+  410  git add .
+  411  git commit -m "15/15"
+  412  git push
+  413  make clean
+  414  make
+  415  python3 driver.py 
+  416  git add .
+  417  git commit -m "updated"
+  418  git push
+  419  git add .
+  420  git commit -m "update"
+  421  git push
+  422  echo "# CLTP-Practice-FA-25" >> README.md
+  423  git init
+  424  git add README.md
+  425  git commit -m "first commit"
+  426  git branch -M main
+  427  git remote add origin git@github.com:nancyrmz/CLTP-Practice-FA-25.git
+  428  git push -u origin main
+  429  echo "# CLTP-Practice-FA-25" >> README.md
+  430  git init
+  431  git add README.md
+  432  git commit -m "first commit"
+  433  git branch -M main
+  434  git remote add origin git@github.com:nancyrmz/CLTP-Practice-FA-25.git
+  435  git push -u origin main
+  436  git remote add origin git@github.com:nancyrmz/CLTP-Practice-FA-25.git
+  437  git branch -M main
+  438  git push -u origin main
+  439  cd path/to/f2025e1-a-master
+  440  cd path/to/f2025e1-a-master
+  441  find ~ -name "f2025e1-a-master" -type d 2>/dev/null
+  442  find ~ -name "f2025e1-a-master" -type d 2>/dev/null
+  443  ls ~/Downloads/
+  444  ls
+  445  clean
+  446  clear
+  447  git@github.com:nancyrmz/CLTP-Practice-FA-25.git
+  448  git clone git@github.com:nancyrmz/CLTP-Practice-FA-25.git
+  449  cat README.md
+  450  cat README
+  451  ls
+  452  pwd
+  453  cd CLTP-Practice-FA-25
+  454  cat README
+  455  cat README.md
+  456  ls
+  457  ls -a
+  458  run testcases /all_new
+  459  make
+  460  make
+  461  make clean
+  462  make
+  463  ./ref_order
+  464  chmod -x ref_order
+  465  ./ref_order
+  466  chmod +x ref_order
+  467  ./ref_order
+  468  ./ref_order -f testcases/all_new
+  469  ls
+  470  ls -a
+  471  make
+  472  cat Makefile
+  473  make
+  474  make trex
+  475  ./orderlogs
+  476  ./bin/orderlogs
+  477  ./bin/orderlogs -f testcases/all_new
+  478  make clean
+  479  make debug
+  480  make trie
+  481  make trike
+  482  make raptor
+  483  gdb
+  484  gdb orderlogs
+  485  gdb
+  486  make trex
+  487  cd CLTP-Practice-FA-25
+  488  make trex
+  489  gdb
+  490  run
+  491  run ./testcases/add_all
+  492  run ./testcases/add_new
+  493  run -f testcases/all_new
+  494  gdb
+  495  clear
+  496  code --list-extensions
+  497  code --uninstall-extension github.copilot-chat
+  498  code --uninstall-extension keyhr.42-c-format
+  499  make trex
+  500  history
+  501  history >> shell.txt
+  502  history > shell_logs.txt
