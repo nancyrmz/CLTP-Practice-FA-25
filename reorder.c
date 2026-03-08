@@ -14,7 +14,7 @@ struct listnode* reorder_list(struct listnode* node) {
 static struct listnode* find_news(struct listnode** node) {
     struct listnode* follow = NULL;
     struct listnode* itr = *node;
-    while (itr->age == OLD) {
+    while (itr->age == OLD && itr->next != NULL) {
         follow = itr;
         itr = itr->next;
     }
